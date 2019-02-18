@@ -20,7 +20,9 @@ public class TUI implements IUserInterface{
         }
     }
 
-    public void clearScreen(){}
+    public void clearScreen(){
+        System.out.flush(); //Virker ikke?
+    }
 
     //Skal der være flere input - int vægt? - definere med forskellige meyode-navne
     public String getInput(){

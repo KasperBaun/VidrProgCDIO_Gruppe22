@@ -24,7 +24,11 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public void setUserDTO(int userId) {
-        userDto = userDao.getUser(userId);
+        try {
+            userDto = userDao.getUser(userId);
+        } catch (IUserDAO.DALException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
