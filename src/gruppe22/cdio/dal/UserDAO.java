@@ -3,7 +3,7 @@ package gruppe22.cdio.dal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
+public class UserDAO implements IUserDAO{
     class DALException extends Exception {
         public DALException(String msg, Throwable e) {
             super(msg,e);
@@ -32,20 +32,25 @@ public class UserDAO {
         List<UserDTO> users = new ArrayList<UserDTO>();
         User u = data.getUser(0);
         int i = 0;
-        while(u != null) {
-            UserDTO user = new UserDTO();
-            user.setIni(u.getIni());
-            user.setUserName(u.getUserName());
-            user.setUserId(u.getUserId());
-            users.add(user);
-            i++;
-            u = data.getUser(i);
+        try {
+            while (u != null) {
+                UserDTO user = new UserDTO();
+                user.setIni(u.getIni());
+                user.setUserName(u.getUserName());
+                user.setUserId(u.getUserId());
+                users.add(user);
+                i++;
+                u = data.getUser(i);
+            }
+        }
+        catch(IndexOutOfBoundsException e){
+            return users;
         }
         return users;
     }
-    public void createUser(UserDTO user) throws IUserDAO.DALException{
 
-    };
-    public void updateUser(UserDTO user) throws IUserDAO.DALException;
-    public void deleteUser(int userId) throws IUserDAO.DALException;
+    public void createUser(UserDTO user) throws IUserDAO.DALException{}
+    public void updateUser(UserDTO user) throws IUserDAO.DALException{}
+    public void deleteUser(int userId) throws IUserDAO.DALException{}
+
 }
