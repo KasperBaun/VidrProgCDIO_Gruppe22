@@ -24,7 +24,8 @@ public class Controller implements IController {
     ui.printLine("Velkommen");
     ui.printLine("Indtast bruger-id:");
     int userId = Integer.parseInt(ui.getInput());
-
+    ui.clearScreen();
+    showMenu();
     }
 
     @Override
