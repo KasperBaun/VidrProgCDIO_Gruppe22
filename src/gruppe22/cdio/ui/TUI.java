@@ -5,32 +5,32 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //Skal tale med IController - metoderne skal kalde fra controlleren til sidst
-public class TUI extends JFrame implements IUserInterface{
+public class TUI implements IUserInterface{
 
-    //Drop-down menu!
+    //Drop-down menu - lavet i Controller!
 
-    void printLine(String text){
+    public void printLine(String text){
         System.out.println(text);
     }
 
-    void printList(ArrayList<String> array){
+    public void printList(ArrayList<String> array){
         //Hvad skal array-navnet være - mere specifikt, userList?
         for(int i = 0; i < array.size(); i++){
             System.out.println(array.get(i));
         }
     }
 
-    void clearScreen(){}
+    public void clearScreen(){}
 
     //Skal der være flere input - int vægt? - definere med forskellige meyode-navne
-    String getInput(){
+    public String getInput(){
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
         scanner.close();
         return userInput;
     }
 
-    //Double getMachineInput(){
+    //public double getMachineInput(){
     // Scanner scanner = new Scanner(System.in);
     // Double weight = scanner.nextDouble();
     // scanner.close();
