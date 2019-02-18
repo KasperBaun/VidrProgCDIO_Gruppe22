@@ -9,14 +9,15 @@ public class TUI extends JFrame implements IUserInterface{
 
     //Drop-down menu!
 
-
     void printLine(String text){
         System.out.println(text);
     }
 
     void printList(ArrayList<String> array){
         //Hvad skal array-navnet være - mere specifikt, userList?
-        System.out.println(array);
+        for(int i = 0; i < array.size(); i++){
+            System.out.println(array.get(i));
+        }
     }
 
     void clearScreen(){}
