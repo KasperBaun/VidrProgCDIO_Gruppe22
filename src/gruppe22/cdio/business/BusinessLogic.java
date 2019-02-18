@@ -7,7 +7,7 @@ public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-    private int currentUser;
+
 
     @Override
     public String getRole() {
@@ -26,4 +26,16 @@ public class BusinessLogic implements IBusinessLogic {
     public void setUserDTO(int userId) {
         userDto = userDao.getUser(userId);
     }
+
+    @Override
+    public String getUsername() {
+        return userDto.getUserName();
+    }
+
+    @Override
+    public int getUserId() {
+        return userDto.getUserId();
+    }
+
+
 }

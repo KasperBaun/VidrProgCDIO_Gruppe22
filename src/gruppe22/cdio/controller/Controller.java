@@ -34,11 +34,29 @@ public class Controller implements IController {
 
     @Override
     public void showMenu() {
-
+    ui.printLine("Du er logget på som:");
+    ui.printLine("Navn"   + logic.getUsername());
+    ui.printLine("ID:"    + logic.getUserId());
+    ui.printLine("Rolle:" + logic.getRole());
+    ui.printLine("Hovedmenu");
+    ui.printLine("1. Opret ny bruger");
+    ui.printLine("2. List brugere");
+    ui.printLine("3. Ret bruger");
+    ui.printLine("4. Slet bruger");
+    ui.printLine("5. Afslut program");
+    int choice = Integer.parseInt(ui.getInput());
+    int permissionLevel =logic.getPermissionLevel();
+    showSubMenu(choice,permissionLevel);
     }
 
     @Override
-    public void showSubMenu() {
+    public void showSubMenu(int userChoice, int permissionLevel) {
+        switch (userChoice){
+            // TODO: Permissionlevel skal bestemme om du kan få vist en submenu
+            case 1 : if(permissionLevel==1);
 
+        }
     }
+
+
 }
