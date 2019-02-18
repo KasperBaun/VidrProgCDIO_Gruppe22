@@ -41,9 +41,8 @@ public class UserDAO {
             i++;
             u = data.getUser(i);
         }
-
-
-    };
+        return users;
+    }
     public void createUser(UserDTO user) throws IUserDAO.DALException{
 
     };
