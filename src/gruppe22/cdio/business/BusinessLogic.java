@@ -6,7 +6,9 @@ import gruppe22.cdio.dal.UserDTO;
 public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
+
     private int currentUser;
+
     @Override
     public String getRole() {
         return null;
@@ -15,5 +17,13 @@ public class BusinessLogic implements IBusinessLogic {
     @Override
     public int getPermissionLevel() {
         return 0;
+
+
+
+    }
+
+    @Override
+    public void setUserDTO(int userId) {
+        userDto = userDao.getUser(userId);
     }
 }
