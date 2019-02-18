@@ -8,6 +8,9 @@ public interface IController {
     void setInterface(IUserInterface ui);
     void setLogic(IBusinessLogic logic);
     void start();
+    void showLogin();
+    void showMenu();
+    void showSubMenu(int userChoice, int permissionLevel);
 
     //Todo: methods for program flow here..
 }
