@@ -31,6 +31,8 @@ public class UserDAO implements IUserDAO{
     public List<UserDTO> getUserList() throws IUserDAO.DALException{
         List<UserDTO> users = new ArrayList<UserDTO>();
         User u = data.getUser(0);
+
+        // todo - her den skal være
         int i = 0;
         try {
             while (u != null) {

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DummyData {
-
-
     public List<User> users = new ArrayList<>();
 
 
@@ -14,9 +12,7 @@ public class DummyData {
             users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", "Role"));
         }
     }
-
     public User getUser(int id){
         return users.get(id);
     }
-
 }
