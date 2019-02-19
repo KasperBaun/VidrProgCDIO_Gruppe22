@@ -2,6 +2,7 @@ package gruppe22.cdio.ui;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 //Skal tale med IController - metoderne skal kalde fra controlleren til sidst
@@ -13,7 +14,7 @@ public class TUI implements IUserInterface{
         System.out.println(text);
     }
 
-    public void printList(ArrayList<String> array){
+    public void printList(List<String> array){
         //Hvad skal array-navnet være - mere specifikt, userList?
         for(int i = 0; i < array.size(); i++){
             System.out.println(array.get(i));
