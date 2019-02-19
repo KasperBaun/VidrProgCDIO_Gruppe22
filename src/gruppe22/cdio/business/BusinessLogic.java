@@ -35,11 +35,15 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public List<String> getUserList() {
-        var userList = userDao.getUserList();
         List<String> list = null;
+        try {
+            var userList = userDao.getUserList();
 
-        for (int i = 0; i < userList.size(); i++) {
-            list.add(userList.get(i).toString());
+            for (int i = 0; i < userList.size(); i++) {
+                list.add(userList.get(i).toString());
+            }
+        } catch (IUserDAO.DALException e) {
+            e.printStackTrace();
         }
         return list;
     }
@@ -53,6 +57,4 @@ public class BusinessLogic implements IBusinessLogic {
     public int getUserId() {
         return userDto.getUserId();
     }
-
-
 }
