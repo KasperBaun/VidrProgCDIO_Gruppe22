@@ -35,10 +35,7 @@ public class Controller implements IController {
 
     @Override
     public void showMenu() {
-    ui.printLine("Du er logget på som:");
-    ui.printLine("Navn"   + logic.getUsername());
-    ui.printLine("ID:"    + logic.getUserId());
-    ui.printLine("Rolle:" + logic.getRole());
+        showUserContext();
     ui.printLine("Hovedmenu");
     ui.printLine("1. Opret ny bruger");
     ui.printLine("2. List brugere");
@@ -46,18 +43,52 @@ public class Controller implements IController {
     ui.printLine("4. Slet bruger");
     ui.printLine("5. Afslut program");
     int choice = Integer.parseInt(ui.getInput());
-    int permissionLevel =logic.getPermissionLevel();
-    showSubMenu(choice,permissionLevel);
+    showSubMenu(choice);
     }
 
     @Override
-    public void showSubMenu(int userChoice, int permissionLevel) {
+    public void showSubMenu(int userChoice) {
+        ui.clearScreen();
+        showUserContext();
         switch (userChoice){
-            // TODO: Permissionlevel skal bestemme om du kan få vist en submenu
-            case 1 : if(permissionLevel==1);
-
+            case 1:
+                subCreateUser();
+                break;
+            case 2:
+                subListUsers();
+                break;
+            case 5:
+                subCloseProgram();
+                break;
         }
     }
 
+    private void subCreateUser() {
+        if (logic.getPermissionLevel() == 1) {
 
+        } else {
+            showPermissionDenied();
+        }
+    }
+
+    private void subListUsers() {
+        ui.printList(logic.getUserList());
+    }
+
+    private void subCloseProgram() {
+        System.exit(0);
+    }
+
+    private void showUserContext() {
+        ui.printLine("Du er logget på som:");
+        ui.printLine("Navn"   + logic.getUsername());
+        ui.printLine("ID:"    + logic.getUserId());
+        ui.printLine("Rolle:" + logic.getRole());
+    }
+
+    private void showPermissionDenied() {
+        ui.clearScreen();
+        ui.printLine("Du har ikke de nødvendige rettigheder.");
+        showMenu();
+    }
 }

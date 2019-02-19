@@ -10,7 +10,7 @@ public interface IController {
     void start();
     void showLogin();
     void showMenu();
-    void showSubMenu(int userChoice, int permissionLevel);
+    void showSubMenu(int userChoice);
 
     //Todo: methods for program flow here..
 }
