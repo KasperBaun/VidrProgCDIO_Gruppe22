@@ -8,6 +8,8 @@ import java.util.Scanner;
 //Skal tale med IController - metoderne skal kalde fra controlleren til sidst
 public class TUI implements IUserInterface{
 
+    Scanner scanner = new Scanner(System.in);
+
     //Drop-down menu - lavet i Controller!
 
     public void printLine(String text){
@@ -27,9 +29,8 @@ public class TUI implements IUserInterface{
 
     //Skal der være flere input - int vægt? - definere med forskellige meyode-navne
     public String getInput(){
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        scanner.close();
+        String userInput = null;
+        userInput = scanner.next();
         return userInput;
     }
 
