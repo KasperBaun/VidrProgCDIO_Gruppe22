@@ -6,6 +6,7 @@ import java.util.List;
 
 public class UserDTO implements Serializable{
 
+// Private Attributes
     private static final long serialVersionUID = 4545864587995944260L;
     private int	userId;
     private String userName;
@@ -14,11 +15,13 @@ public class UserDTO implements Serializable{
     private String password;
     private List<String> roles;
 
+// Constructor
     public UserDTO() {
         this.roles = new ArrayList<>();
     }
 
-    public int getUserId() {
+// Public Methods
+    public int  getUserId() {
         return userId;
     }
     public void setUserId(int userId) {
@@ -36,31 +39,23 @@ public class UserDTO implements Serializable{
     public void setIni(String ini) {
         this.ini = ini;
     }
-
     public List<String> getRoles() {
         return roles;
     }
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
-
     public void addRole(String role){
         this.roles.add(role);
     }
-    /**
-     *
-     * @param role
-     * @return true if role existed, false if not
-     */
     public boolean removeRole(String role){
         return this.roles.remove(role);
     }
+//Private Methods
 
+// Override Methods
     @Override
     public String toString() {
         return "UserDTO [userId=" + userId + ", userName=" + userName + ", ini=" + ini + ", roles=" + roles + "]";
     }
-
-
-
 }
