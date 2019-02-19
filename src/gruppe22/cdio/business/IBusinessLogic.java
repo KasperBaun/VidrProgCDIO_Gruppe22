@@ -1,8 +1,5 @@
 package gruppe22.cdio.business;
 
-import gruppe22.cdio.dal.IUserDAO;
-import gruppe22.cdio.dal.UserDTO;
-
 import java.util.List;
 
 public interface IBusinessLogic {
@@ -16,4 +13,5 @@ public interface IBusinessLogic {
     String getUsername();
     int getUserId();
     List<String> getUserList();
+    void createUser(String userName, String ini);
 }
