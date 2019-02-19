@@ -3,6 +3,8 @@ package gruppe22.cdio.business;
 import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.dal.UserDTO;
 
+import java.util.List;
+
 public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
@@ -29,6 +31,17 @@ public class BusinessLogic implements IBusinessLogic {
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public List<String> getUserList() {
+        var userList = userDao.getUserList();
+        List<String> list = null;
+
+        for (int i = 0; i < userList.size(); i++) {
+            list.add(userList.get(i).toString());
+        }
+        return list;
     }
 
     @Override
