@@ -22,7 +22,21 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public int getPermissionLevel() {
-        return 0;
+        var roles = userDto.getRoles();
+
+        //Todo: Waiting for UserDAO to be implemented
+        // should loop through the list - but as long as users only have one role index 0 is fine
+//        if (roles.get(0).contains("Admin"))
+//            return 1;
+//        else if (roles.get(0).contains("Operator"))
+//            return 2;
+//        else if (roles.get(0).contains("Pharmacist"))
+//            return 3;
+//        else if (roles.get(0).contains("Foreman"))
+//            return 4;
+
+        //Todo: remove hardcoded permissionLevel
+        return 1;
     }
 
     @Override
@@ -41,12 +55,23 @@ public class BusinessLogic implements IBusinessLogic {
             var userList = userDao.getUserList();
 
             for (int i = 0; i < userList.size(); i++) {
-                list.add(userList.get(i).toString());
+                list.add("ID: " + userList.get(i).getUserId()
+                        + ", Navn: " + userList.get(i).getUserName()
+                        + ", Initialer: " + userList.get(i).getIni()
+                );
             }
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
         }
         return list;
+    }
+
+    @Override
+    public void createUser(String userName, String ini) {
+        UserDTO user = new UserDTO();
+        user.setUserName(userName);
+        user.setIni(ini);
+        //userDao.createUser(user);
     }
 
     @Override
