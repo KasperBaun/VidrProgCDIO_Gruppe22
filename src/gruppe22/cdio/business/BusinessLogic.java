@@ -1,15 +1,19 @@
 package gruppe22.cdio.business;
 
 import gruppe22.cdio.dal.IUserDAO;
+import gruppe22.cdio.dal.UserDAO;
 import gruppe22.cdio.dal.UserDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-
+    public  BusinessLogic() {
+        userDao = new UserDAO();
+    }
 
     @Override
     public String getRole() {
@@ -19,9 +23,6 @@ public class BusinessLogic implements IBusinessLogic {
     @Override
     public int getPermissionLevel() {
         return 0;
-
-
-
     }
 
     @Override
@@ -35,7 +36,7 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public List<String> getUserList() {
-        List<String> list = null;
+        List<String> list = new ArrayList<>();
         try {
             var userList = userDao.getUserList();
 
