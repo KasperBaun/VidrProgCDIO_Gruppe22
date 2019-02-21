@@ -65,10 +65,13 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void createUser(String userName, String ini) {
-        UserDTO user = new UserDTO();
-        user.setUserName(userName);
-        user.setIni(ini);
+    public void createUser(int userId, String userName, String ini, int cpr, String role) {
+
+        List<String> roles = new ArrayList<>();
+        roles.add(role);
+        String password = generatePassword();
+
+        UserDTO user = new UserDTO(userId, userName, ini, cpr, password, roles);
 
         try {
             userDao.createUser(user);
@@ -92,9 +95,9 @@ public class BusinessLogic implements IBusinessLogic {
      * * '.', '-', '_', '+', '!', '?', '='
      * Password can't include userName or initials.
      */
-    /*private String generatePassword() {
-        Random random = new SecureRandom();
-        String password = ;
+    private String generatePassword() {
+        //Random random = new SecureRandom();
+        String password = "";
         return password;
-    }*/
+    }
 }

@@ -66,11 +66,18 @@ public class Controller implements IController {
     private void subCreateUser() {
         if (logic.getPermissionLevel() == 1) {
             ui.printLine("Opret ny bruger");
+            ui.printLine("\nIndtast bruger-ID (11-99:");
+            int userId = Integer.parseInt(ui.getInput());
             ui.printLine("\nIndtast brugernavn:");
             String userName = ui.getInput();
             ui.printLine("\nIndtast initialer:");
             String ini = ui.getInput();
+            ui.printLine("\nIndtast CPR-nummer:");
+            int cprNumber = Integer.parseInt(ui.getInput());
+            ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
+            String role = ui.getInput();
 
+            logic.createUser(userId, userName, ini, cprNumber, role);
         } else {
             showPermissionDenied();
         }
