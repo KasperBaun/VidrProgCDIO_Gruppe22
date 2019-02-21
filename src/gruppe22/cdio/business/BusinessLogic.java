@@ -22,21 +22,19 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public int getPermissionLevel() {
-        var roles = userDto.getRoles();
+        List<String> roles = userDto.getRoles();
 
-        //Todo: Waiting for UserDAO to be implemented
-        // should loop through the list - but as long as users only have one role index 0 is fine
-//        if (roles.get(0).contains("Admin"))
-//            return 1;
-//        else if (roles.get(0).contains("Operator"))
-//            return 2;
-//        else if (roles.get(0).contains("Pharmacist"))
-//            return 3;
-//        else if (roles.get(0).contains("Foreman"))
-//            return 4;
-
-        //Todo: remove hardcoded permissionLevel
-        return 1;
+        // Todo: should loop through the list - but as long as users only have one role index 0 is fine
+        if (roles.get(0).contains("Admin"))
+            return 1;
+        else if (roles.get(0).contains("Operator"))
+            return 2;
+        else if (roles.get(0).contains("Pharmacist"))
+            return 3;
+        else if (roles.get(0).contains("Foreman"))
+            return 4;
+        else
+            return 0;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class BusinessLogic implements IBusinessLogic {
     public List<String> getUserList() {
         List<String> list = new ArrayList<>();
         try {
-            var userList = userDao.getUserList();
+            List<UserDTO> userList = userDao.getUserList();
 
             for (int i = 0; i < userList.size(); i++) {
                 list.add("ID: " + userList.get(i).getUserId()
@@ -71,7 +69,12 @@ public class BusinessLogic implements IBusinessLogic {
         UserDTO user = new UserDTO();
         user.setUserName(userName);
         user.setIni(ini);
-        //userDao.createUser(user);
+
+        try {
+            userDao.createUser(user);
+        } catch (IUserDAO.DALException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -83,4 +86,15 @@ public class BusinessLogic implements IBusinessLogic {
     public int getUserId() {
         return userDto.getUserId();
     }
+
+    /*
+     * 8 characters, minimum three of the following types: small, capital, numbers and special* characters.
+     * * '.', '-', '_', '+', '!', '?', '='
+     * Password can't include userName or initials.
+     */
+    /*private String generatePassword() {
+        Random random = new SecureRandom();
+        String password = ;
+        return password;
+    }*/
 }
