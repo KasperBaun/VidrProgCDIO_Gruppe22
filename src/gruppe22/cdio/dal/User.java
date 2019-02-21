@@ -1,13 +1,16 @@
 package gruppe22.cdio.dal;
 
+import java.util.List;
+
 public class User{
     private int	userId;
     private String userName;
     private String ini;
     private int cpr;
     private String password;
-    private String role;
-    public User(int userId, String username, String ini, int cpr, String password, String role ){
+    private List<String> role;
+
+    public User(int userId, String username, String ini, int cpr, String password, List<String> role ){
         this.userId = userId;
         this.userName = username;
         this.ini = ini;
@@ -32,7 +35,7 @@ public class User{
         return password;
     }
 
-    public String getRole() {
+    public List<String> getRole() {
         return role;
     }
 
