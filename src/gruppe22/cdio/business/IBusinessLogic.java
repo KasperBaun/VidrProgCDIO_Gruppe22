@@ -14,4 +14,5 @@ public interface IBusinessLogic {
     int getUserId();
     List<String> getUserList();
     void createUser(int userId, String userName, String ini, int cpr, String role);
+    void deleteUser(int userId);
 }

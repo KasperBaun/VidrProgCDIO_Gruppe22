@@ -57,6 +57,9 @@ public class Controller implements IController {
             case 2:
                 subListUsers();
                 break;
+            case 4:
+                subDeleteUser();
+                break;
             case 5:
                 subCloseProgram();
                 break;
@@ -76,8 +79,22 @@ public class Controller implements IController {
             int cprNumber = Integer.parseInt(ui.getInput());
             ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
             String role = ui.getInput();
-
             logic.createUser(userId, userName, ini, cprNumber, role);
+            ui.clearScreen();
+            showMenu();
+        } else {
+            showPermissionDenied();
+        }
+    }
+
+    private void subDeleteUser() {
+        if (logic.getPermissionLevel() == 1) {
+            ui.printLine("Slet bruger");
+            ui.printLine("\nIndtast bruger-ID (11-99:");
+            int id = Integer.parseInt(ui.getInput());
+            logic.deleteUser(id);
+            ui.clearScreen();
+            showMenu();
         } else {
             showPermissionDenied();
         }
