@@ -10,21 +10,21 @@ public class Controller implements IController {
 
     @Override
     public void setInterface(IUserInterface ui) {
-    this.ui = ui;
+        this.ui = ui;
     }
 
     @Override
     public void setLogic(IBusinessLogic logic) {
-    this.logic = logic;
+        this.logic = logic;
     }
 
     @Override
     public void start() {
-    ui.printLine("Velkommen");
-    ui.printLine("Indtast bruger-id:");
-    logic.setUserDTO(Integer.parseInt(ui.getInput()));
-    ui.clearScreen();
-    showMenu();
+        ui.printLine("Velkommen");
+        ui.printLine("Indtast bruger-id:");
+        logic.setUserDTO(Integer.parseInt(ui.getInput()));
+        ui.clearScreen();
+        showMenu();
     }
 
     @Override
@@ -34,17 +34,17 @@ public class Controller implements IController {
 
     @Override
     public void showMenu() {
-    showUserContext();
-    ui.printLine("Hovedmenu");
-    ui.printLine("1. Opret ny bruger");
-    ui.printLine("2. List brugere");
-    ui.printLine("3. Ret bruger");
-    ui.printLine("4. Slet bruger");
-    ui.printLine("5. Afslut program");
-    ui.printLine("\nIndtast valg:");
-    int choice = Integer.parseInt(ui.getInput());
-    ui.clearScreen();
-    showSubMenu(choice);
+        showUserContext();
+        ui.printLine("Hovedmenu");
+        ui.printLine("1. Opret ny bruger");
+        ui.printLine("2. List brugere");
+        ui.printLine("3. Ret bruger");
+        ui.printLine("4. Slet bruger");
+        ui.printLine("5. Afslut program");
+        ui.printLine("\nIndtast valg:");
+        int choice = Integer.parseInt(ui.getInput());
+        ui.clearScreen();
+        showSubMenu(choice);
     }
 
     @Override
