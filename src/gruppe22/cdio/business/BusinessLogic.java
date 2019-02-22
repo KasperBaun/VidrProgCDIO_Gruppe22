@@ -17,7 +17,7 @@ public class BusinessLogic implements IBusinessLogic {
 
     @Override
     public String getRole() {
-        return null;
+        return userDto.getRoles().get(0);
     }
 
     @Override
@@ -56,6 +56,7 @@ public class BusinessLogic implements IBusinessLogic {
                 list.add("ID: " + userList.get(i).getUserId()
                         + ", Navn: " + userList.get(i).getUserName()
                         + ", Initialer: " + userList.get(i).getIni()
+                        + ", Rolle: " + userList.get(i).getRoles()
                 );
             }
         } catch (IUserDAO.DALException e) {
