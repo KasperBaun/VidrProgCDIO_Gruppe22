@@ -96,6 +96,8 @@ public class Controller implements IController {
     }
 
     private void subCloseProgram() {
+        ui.clearScreen();
+        ui.printLine("Du er nu logget ud!");
         System.exit(0);
     }
 
