@@ -86,8 +86,12 @@ public class Controller implements IController {
     private void subListUsers() {
         ui.printLine("Brugere:\n");
         ui.printList(logic.getUserList());
-        ui.printLine("\nTast enter for at gå til hovedmenu.");
-        ui.getInput();
+        ui.printLine("\nTast 1 for at gå til hovedmenu.");
+        int i = Integer.parseInt(ui.getInput());
+        while (i != 1) {
+            i = Integer.parseInt(ui.getInput());
+        }
+        ui.clearScreen();
         showMenu();
     }
 
