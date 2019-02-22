@@ -10,8 +10,12 @@ public class DummyData {
     public DummyData(){
         for (int i = 0; i < 10; i++) {
             List<String> tomListe = new ArrayList<String>();
+            tomListe.add("Pharmacist");
             users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
         }
+        List<String> adminListe = new ArrayList<String>();
+        adminListe.add("Admin");
+        users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));
     }
     public User getUser(int id){
         return users.get(id);
