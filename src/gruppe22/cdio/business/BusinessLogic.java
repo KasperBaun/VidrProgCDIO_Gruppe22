@@ -82,6 +82,16 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
+    public void deleteUser(int userId) {
+        try {
+            UserDTO user = userDao.getUser(userId);
+            userDao.deleteUser(user);
+        } catch (IUserDAO.DALException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @Override
     public String getUsername() {
         return userDto.getUserName();
     }
