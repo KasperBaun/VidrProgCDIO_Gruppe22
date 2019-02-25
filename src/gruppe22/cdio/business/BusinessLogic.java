@@ -4,8 +4,14 @@ import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.dal.UserDAO;
 import gruppe22.cdio.dal.UserDTO;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
@@ -70,7 +76,8 @@ public class BusinessLogic implements IBusinessLogic {
 
         List<String> roles = new ArrayList<>();
         roles.add(role);
-        String password = generatePassword();
+        String password = "";
+        var passwd = generateSecureRandomPassword();
 
         UserDTO user = new UserDTO(userId, userName, ini, cpr, password, roles);
 
@@ -101,14 +108,73 @@ public class BusinessLogic implements IBusinessLogic {
         return userDto.getUserId();
     }
 
-    /*
-     * 8 characters, minimum three of the following types: small, capital, numbers and special* characters.
-     * * '.', '-', '_', '+', '!', '?', '='
-     * Password can't include userName or initials.
+    /**
+     * A method for generating a set of random chars
+     *
+     *
+     * @param count the amount of special characters that you want to generate
+     * @return a character stream containing count special charactes (unicode 33-45)
      */
-    private String generatePassword() {
-        //Random random = new SecureRandom();
-        String password = "";
+    public Stream<Character> getRandomSpecialChars(int count) {
+        Random random = new SecureRandom();
+        IntStream specialChars = random.ints(count, 33, 45);
+        return specialChars.mapToObj(data -> (char) data);
+    }
+
+    /**
+     * A method for generating a set of random numbers
+     *
+     *
+     * @param count the amount of numbers you want to generate
+     * @return a character stream containing count numbers (unicode 48-57)
+     */
+    public Stream<Character> getRandomNumbers(int count) {
+        Random random = new SecureRandom();
+        IntStream numberChars = random.ints(count, 48, 57);
+        return numberChars.mapToObj(data -> (char) data);
+    }
+
+    /**
+     * A method for generating a set of lower case characters
+     *
+     *
+     * @param count the amount of chars you want to generate.
+     * @return a character stream containing count lower case chars (unicode 97-122)
+     */
+    public Stream<Character> getLowerCase(int count) {
+        Random random = new SecureRandom();
+        IntStream lowerCaseChar = random.ints(count, 97,122);
+        return lowerCaseChar.mapToObj(data -> (char) data);
+    }
+
+    /**
+     * A method for generating a set of upper case chars
+     *
+     *
+     * @param count the amount of chars you want to generate
+     * @return a character stream containing count lower case chars (unicode 65-90)
+     */
+    public Stream<Character> getUpperCase(int count) {
+        Random random = new SecureRandom();
+        IntStream upperCaseChar = random.ints(count, 65,90);
+        return upperCaseChar.mapToObj(data -> (char) data);
+    }
+
+    /**
+     * a method utilizing the character streams to generate a password.
+     *
+     *
+     * @return a randomly generated secure password.
+     */
+    public String generateSecureRandomPassword() {
+        Stream<Character> pwdStream = Stream.concat(getRandomNumbers(2),
+                Stream.concat(getRandomSpecialChars(2),
+                        Stream.concat(getLowerCase(2), getUpperCase(4))));
+        List<Character> charList = pwdStream.collect(Collectors.toList());
+        Collections.shuffle(charList);
+        String password = charList.stream()
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .toString();
         return password;
     }
 }
