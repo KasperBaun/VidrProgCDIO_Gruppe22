@@ -147,7 +147,7 @@ public class UserDAO implements IUserDAO{
         return Str;
     }
     private Connection getConnection() throws SQLException  {
-        Connection myConnection = DriverManager.getConnection("jdbc:mysql://ec2-52-30-211-3.eu-west-1.compute.amazonaws.com/s185132","s185132","GL1TEuGDoXF6Lm1t2L7lQ");
+        Connection myConnection = DriverManager.getConnection(/*todo SKRIV ADGANGS KODER HER...*/ );
         return myConnection;
     }
 
