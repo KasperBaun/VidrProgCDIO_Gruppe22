@@ -5,8 +5,6 @@ import java.util.List;
 
 public class DummyData {
     public List<User> users = new ArrayList<>();
-
-
     public DummyData(){
         for (int i = 0; i < 10; i++) {
             List<String> tomListe = new ArrayList<String>();
