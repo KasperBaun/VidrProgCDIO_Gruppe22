@@ -1,5 +1,8 @@
 package gruppe22.cdio.business;
 
+import gruppe22.cdio.dal.IUserDAO;
+import gruppe22.cdio.dal.UserDTO;
+
 import java.util.List;
 
 public interface IBusinessLogic {
@@ -13,6 +16,8 @@ public interface IBusinessLogic {
     String getUsername();
     int getUserId();
     List<String> getUserList();
+    UserDTO getUser(int userId) throws IUserDAO.DALException;
     void createUser(int userId, String userName, String ini, int cpr, String role);
+    void updateUser(int userId, String userName, int cprNumber, String ini) throws IUserDAO.DALException;
     void deleteUser(int userId);
 }
