@@ -1,6 +1,8 @@
 package gruppe22.cdio.controller;
 
 import gruppe22.cdio.business.IBusinessLogic;
+import gruppe22.cdio.dal.IUserDAO;
+import gruppe22.cdio.dal.UserDTO;
 import gruppe22.cdio.ui.IUserInterface;
 
 public class Controller implements IController {
@@ -57,6 +59,9 @@ public class Controller implements IController {
             case 2:
                 subListUsers();
                 break;
+            case 3:
+                subUpdateUser();
+                break;
             case 4:
                 subDeleteUser();
                 break;
@@ -69,7 +74,7 @@ public class Controller implements IController {
     private void subCreateUser() {
         if (logic.getPermissionLevel() == 1) {
             ui.printLine("Opret ny bruger");
-            ui.printLine("\nIndtast bruger-ID (11-99:");
+            ui.printLine("\nIndtast bruger-ID (11-99):");
             int userId = Integer.parseInt(ui.getInput());
             ui.printLine("\nIndtast brugernavn:");
             String userName = ui.getInput();
@@ -80,6 +85,29 @@ public class Controller implements IController {
             ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
             String role = ui.getInput();
             logic.createUser(userId, userName, ini, cprNumber, role);
+            ui.clearScreen();
+            showMenu();
+        } else {
+            showPermissionDenied();
+        }
+    }
+
+    private void subUpdateUser() throws IUserDAO.DALException {
+        if (logic.getPermissionLevel() == 1) {
+            ui.printLine("Ret bruger");
+            ui.printLine("\nIndtast bruger-ID, for bruger der skal rettes (11-99):");
+            int userId = Integer.parseInt(ui.getInput());
+
+            ui.printLine("\nBruger: " + logic.getUser(userId).toString());
+            ui.printLine("Indtast (nye) brugernavn:");
+            String userName = ui.getInput();
+            ui.printLine("\nIndtast (nye) initialer:");
+            String ini = ui.getInput();
+            ui.printLine("\nIndtast CPR-nummer:");
+            int cprNumber = Integer.parseInt(ui.getInput());
+            ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
+            String role = ui.getInput();
+            logic.updateUser(user);
             ui.clearScreen();
             showMenu();
         } else {
