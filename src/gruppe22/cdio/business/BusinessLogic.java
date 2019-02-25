@@ -72,12 +72,17 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
+    public UserDTO getUser(int userId) throws IUserDAO.DALException {
+        UserDTO user = userDao.getUser(userId);
+        return user;
+    }
+
+    @Override
     public void createUser(int userId, String userName, String ini, int cpr, String role) {
 
         List<String> roles = new ArrayList<>();
         roles.add(role);
-        String password = "";
-        var passwd = generateSecureRandomPassword();
+        String password = generateSecureRandomPassword();
 
         UserDTO user = new UserDTO(userId, userName, ini, cpr, password, roles);
 
@@ -86,6 +91,12 @@ public class BusinessLogic implements IBusinessLogic {
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void updateUser(int userId, String userName, int cprNumber, String ini) throws IUserDAO.DALException {
+        UserDTO user = new UserDTO(userId, userName, ini, cprNumber, "PLACEHOLDER", new ArrayList<>());
+        userDao.updateUser(user);
     }
 
     @Override
