@@ -104,9 +104,8 @@ public class Controller implements IController {
             String ini = ui.getInput();
             ui.printLine("\nIndtast CPR-nummer:");
             int cprNumber = Integer.parseInt(ui.getInput());
-            ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
-            String role = ui.getInput();
-            logic.updateUser(userId, userName, cprNumber, ini);
+            logic.updateUser(userId, userName, cprNumber, ini, logic.getUser(userId).getPassword(),
+                    logic.getUser(userId).getRoles());
             ui.clearScreen();
             showMenu();
         } else {

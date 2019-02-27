@@ -94,8 +94,8 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void updateUser(int userId, String userName, int cprNumber, String ini) throws IUserDAO.DALException {
-        UserDTO user = new UserDTO(userId, userName, ini, cprNumber, "PLACEHOLDER", new ArrayList<>());
+    public void updateUser(int userId, String userName, int cprNumber, String ini, String pw, List<String> roles) throws IUserDAO.DALException {
+        UserDTO user = new UserDTO(userId, userName, ini, cprNumber, pw, roles);
         userDao.updateUser(user);
     }
 

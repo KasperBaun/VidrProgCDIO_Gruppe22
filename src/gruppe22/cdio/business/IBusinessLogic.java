@@ -18,6 +18,6 @@ public interface IBusinessLogic {
     List<String> getUserList();
     UserDTO getUser(int userId) throws IUserDAO.DALException;
     void createUser(int userId, String userName, String ini, int cpr, String role);
-    void updateUser(int userId, String userName, int cprNumber, String ini) throws IUserDAO.DALException;
+    void updateUser(int userId, String userName, int cprNumber, String ini, String pw, List<String> roles) throws IUserDAO.DALException;
     void deleteUser(int userId);
 }
