@@ -24,11 +24,13 @@ public class DummyData {
     public void createUser(UserDTO user){
         users.add(new User(user.getUserId() ,user.getUserName(), user.getIni(), user.getCpr(), user.getPassword(), user.getRoles()));
     }
-    public void updateUser(UserDTO Updateduser){
-        int id = Updateduser.getUserId();
-        User tempUser = users.get(id);
-        users.remove(id);
-        users.add(tempUser);
+    public void updateUser(UserDTO updatedUser){
+        int id = updatedUser.getUserId();
+        users.get(id).setIni(updatedUser.getIni());
+        users.get(id).setUserName(updatedUser.getUserName());
+        users.get(id).setCpr(updatedUser.getCpr());
+        users.get(id).setPassword(updatedUser.getPassword());
+        users.get(id).setRole(updatedUser.getRoles());
     }
     public void deleteUser(UserDTO user){
         int id = user.getUserId();

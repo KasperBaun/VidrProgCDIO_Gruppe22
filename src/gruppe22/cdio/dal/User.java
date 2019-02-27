@@ -19,6 +19,30 @@ public class User{
         this.role = role;
     }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setIni(String ini) {
+        this.ini = ini;
+    }
+
+    public void setCpr(long cpr) {
+        this.cpr = cpr;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setRole(List<String> role) {
+        this.role = role;
+    }
+
     public long getCpr() {
         return cpr;
     }
