@@ -9,16 +9,19 @@ public class DummyData {
 
 
     public DummyData() throws IOException, ClassNotFoundException {
-        /*for (int i = 0; i < 10; i++) {
-            List<String> tomListe = new ArrayList<String>();
-            tomListe.add("Pharmacist");
-            users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
+        if (!(new File("Data.txt").exists())) {
+            for (int i = 0; i < 10; i++) {
+                List<String> tomListe = new ArrayList<String>();
+                tomListe.add("Pharmacist");
+                users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
+            }
+            List<String> adminListe = new ArrayList<String>();
+            adminListe.add("Admin");
+            users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));
         }
-        List<String> adminListe = new ArrayList<String>();
-        adminListe.add("Admin");
-        users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));*/
-
-        readFromDisk("Data.txt");
+        else {
+            readFromDisk("Data.txt");
+        }
     }
     public User getUser(int id){
         return users.get(id);
@@ -53,6 +56,6 @@ public class DummyData {
 
     public void readFromDisk(String fileName) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
-        this.users =  (List<User>)in.readObject();
+        this.users = (List<User>)in.readObject();
     }
 }
