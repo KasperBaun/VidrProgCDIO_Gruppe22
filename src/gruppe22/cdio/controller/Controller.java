@@ -67,6 +67,8 @@ public class Controller implements IController {
             case 5:
                 subCloseProgram();
                 break;
+            default:
+                subTryAgain();
         }
     }
 
@@ -154,6 +156,12 @@ public class Controller implements IController {
     private void showPermissionDenied() throws IUserDAO.DALException {
         ui.clearScreen();
         ui.printLine("Fejl: manglende rettigheder!");
+        showMenu();
+    }
+
+    private void subTryAgain() throws IUserDAO.DALException {
+        ui.clearScreen();
+        ui.printLine("Vælg venligst et gyldigt valg");
         showMenu();
     }
 }

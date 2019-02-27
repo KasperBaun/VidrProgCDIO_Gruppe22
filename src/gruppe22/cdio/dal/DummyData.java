@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DummyData {
-    public List<User> users = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
 
     public DummyData(){
@@ -20,8 +20,9 @@ public class DummyData {
     public User getUser(int id){
         return users.get(id);
     }
+
     public void createUser(UserDTO user){
-        int id = users.size() +1;
+        int id = users.size() + 1;
         users.add(new User(id ,user.getUserName(), user.getIni(), user.getCpr(), user.getPassword(), user.getRoles()));
     }
     public void updateUser(UserDTO Updateduser){
@@ -33,5 +34,9 @@ public class DummyData {
     public void deleteUser(UserDTO user){
         int id = user.getUserId();
         users.remove(id);
+    }
+
+    public int getUserListSize() {
+        return users.size();
     }
 }

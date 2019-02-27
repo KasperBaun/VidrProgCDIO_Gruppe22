@@ -26,19 +26,14 @@ public class UserDAO implements IUserDAO{
         List<UserDTO> users = new ArrayList<UserDTO>();
         User u = data.getUser(0);
 
-        int i = 0;
-        try {
-            while (u != null) {
-                UserDTO user = new UserDTO(u.getUserId(), u.getUserName(), u.getIni(), u.getCpr(), u.getPassword(), u.getRole() );
-                users.add(user);
-                i++;
-                u = data.getUser(i);
-            }
-        }
-        catch(IndexOutOfBoundsException e){
-            return users;
+        for (int i = 0; i < data.getUserListSize() - 1; i++) {
+            UserDTO user = new UserDTO (u.getUserId(), u.getUserName(), u.getIni(), u.getCpr(),
+                    u.getPassword(), u.getRole());
+            users.add(user);
+            u = data.getUser(i);
         }
         return users;
+
     }
 
     public void createUser(UserDTO user) throws IUserDAO.DALException{

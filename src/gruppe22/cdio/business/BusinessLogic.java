@@ -59,11 +59,7 @@ public class BusinessLogic implements IBusinessLogic {
             List<UserDTO> userList = userDao.getUserList();
 
             for (int i = 0; i < userList.size(); i++) {
-                list.add("ID: " + userList.get(i).getUserId()
-                        + ", Navn: " + userList.get(i).getUserName()
-                        + ", Initialer: " + userList.get(i).getIni()
-                        + ", Rolle: " + userList.get(i).getRoles()
-                );
+                list.add(userList.get(i).toString());
             }
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
