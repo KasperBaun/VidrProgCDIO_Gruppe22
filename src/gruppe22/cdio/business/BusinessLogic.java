@@ -4,6 +4,7 @@ import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.dal.UserDAO;
 import gruppe22.cdio.dal.UserDTO;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +18,7 @@ public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-    public  BusinessLogic() {
+    public  BusinessLogic() throws IOException, ClassNotFoundException {
         userDao = new UserDAO();
     }
 
@@ -183,5 +184,9 @@ public class BusinessLogic implements IBusinessLogic {
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
         return password;
+    }
+
+    public void saveData(String fileName) throws IOException {
+        userDao.saveData(fileName);
     }
 }

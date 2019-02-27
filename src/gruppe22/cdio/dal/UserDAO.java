@@ -1,9 +1,13 @@
 package gruppe22.cdio.dal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO{
+    public UserDAO() throws IOException, ClassNotFoundException {
+    }
+
     class DALException extends Exception {
         public DALException(String msg, Throwable e) {
             super(msg,e);
@@ -44,5 +48,9 @@ public class UserDAO implements IUserDAO{
     }
     public void deleteUser(UserDTO user) throws IUserDAO.DALException{
         data.deleteUser(user);
+    }
+
+    public void saveData(String fileName) throws IOException {
+        data.saveToDisk(fileName);
     }
 }

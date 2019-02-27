@@ -1,5 +1,6 @@
 package gruppe22.cdio.dal;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,15 +8,17 @@ public class DummyData {
     private List<User> users = new ArrayList<>();
 
 
-    public DummyData(){
-        for (int i = 0; i < 10; i++) {
+    public DummyData() throws IOException, ClassNotFoundException {
+        /*for (int i = 0; i < 10; i++) {
             List<String> tomListe = new ArrayList<String>();
             tomListe.add("Pharmacist");
             users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
         }
         List<String> adminListe = new ArrayList<String>();
         adminListe.add("Admin");
-        users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));
+        users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));*/
+
+        readFromDisk("Data.txt");
     }
     public User getUser(int id){
         return users.get(id);
@@ -39,5 +42,17 @@ public class DummyData {
 
     public int getUserListSize() {
         return users.size();
+    }
+
+    public void saveToDisk(String fileName) throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+        out.writeObject(this.users);
+        out.flush();
+        out.close();
+    }
+
+    public void readFromDisk(String fileName) throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
+        this.users =  (List<User>)in.readObject();
     }
 }

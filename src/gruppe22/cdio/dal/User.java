@@ -1,8 +1,9 @@
 package gruppe22.cdio.dal;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class User{
+public class User implements Serializable {
     private int	userId;
     private String userName;
     private String ini;

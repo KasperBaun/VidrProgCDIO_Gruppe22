@@ -4,6 +4,8 @@ import gruppe22.cdio.business.IBusinessLogic;
 import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.ui.IUserInterface;
 
+import java.io.IOException;
+
 public class Controller implements IController {
     private IUserInterface ui;
     private IBusinessLogic logic;
@@ -20,7 +22,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public void start() throws IUserDAO.DALException {
+    public void start() throws IUserDAO.DALException, IOException {
         ui.printLine("Velkommen");
         ui.printLine("Indtast bruger-id:");
         logic.setUserDTO(Integer.parseInt(ui.getInput()));
@@ -34,7 +36,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public void showMenu() throws IUserDAO.DALException {
+    public void showMenu() throws IUserDAO.DALException, IOException {
         showUserContext();
         ui.printLine("Hovedmenu");
         ui.printLine("1. Opret ny bruger");
@@ -49,7 +51,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public void showSubMenu(int userChoice) throws IUserDAO.DALException {
+    public void showSubMenu(int userChoice) throws IUserDAO.DALException, IOException {
         showUserContext();
         switch (userChoice){
             case 1:
@@ -72,7 +74,7 @@ public class Controller implements IController {
         }
     }
 
-    private void subCreateUser() throws IUserDAO.DALException {
+    private void subCreateUser() throws IUserDAO.DALException, IOException {
         if (logic.getPermissionLevel() == 1) {
             ui.printLine("Opret ny bruger");
             ui.printLine("\nIndtast bruger-ID (11-99):");
@@ -93,7 +95,7 @@ public class Controller implements IController {
         }
     }
 
-    private void subUpdateUser() throws IUserDAO.DALException {
+    private void subUpdateUser() throws IUserDAO.DALException, IOException {
         if (logic.getPermissionLevel() == 1) {
             ui.printLine("Ret bruger");
             ui.printLine("\nIndtast bruger-ID, for bruger der skal rettes (11-99):");
@@ -115,7 +117,7 @@ public class Controller implements IController {
         }
     }
 
-    private void subDeleteUser() throws IUserDAO.DALException {
+    private void subDeleteUser() throws IUserDAO.DALException, IOException {
         if (logic.getPermissionLevel() == 1) {
             ui.printLine("Slet bruger");
             ui.printLine("\nIndtast bruger-ID (11-99:");
@@ -128,7 +130,7 @@ public class Controller implements IController {
         }
     }
 
-    private void subListUsers() throws IUserDAO.DALException {
+    private void subListUsers() throws IUserDAO.DALException, IOException {
         ui.printLine("Brugere:\n");
         ui.printList(logic.getUserList());
         ui.printLine("\nTast 1 for at gå til hovedmenu.");
@@ -140,9 +142,10 @@ public class Controller implements IController {
         showMenu();
     }
 
-    private void subCloseProgram() {
+    private void subCloseProgram() throws IOException {
         ui.clearScreen();
         ui.printLine("Du er nu logget ud!");
+        logic.saveData("Data.txt");
         System.exit(0);
     }
 
@@ -153,13 +156,13 @@ public class Controller implements IController {
                 + "\n");
     }
 
-    private void showPermissionDenied() throws IUserDAO.DALException {
+    private void showPermissionDenied() throws IUserDAO.DALException, IOException {
         ui.clearScreen();
         ui.printLine("Fejl: manglende rettigheder!");
         showMenu();
     }
 
-    private void subTryAgain() throws IUserDAO.DALException {
+    private void subTryAgain() throws IUserDAO.DALException, IOException {
         ui.clearScreen();
         ui.printLine("Vælg venligst et gyldigt valg");
         showMenu();
