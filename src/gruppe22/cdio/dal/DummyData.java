@@ -28,7 +28,11 @@ public class DummyData {
     }
 
     public void createUser(UserDTO user){
-        users.add(new User(user.getUserId() ,user.getUserName(), user.getIni(), user.getCpr(), user.getPassword(), user.getRoles()));
+        while(users.size() > user.getUserId()){
+            user.setUserId(user.getUserId() + 1);
+        }
+        users.add(new User(user.getUserId(), user.getUserName(), user.getIni(), user.getCpr(),
+                user.getPassword(), user.getRoles()));
     }
     public void updateUser(UserDTO updatedUser){
         int id = updatedUser.getUserId();
