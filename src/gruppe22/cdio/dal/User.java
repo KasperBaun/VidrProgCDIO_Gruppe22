@@ -6,11 +6,11 @@ public class User{
     private int	userId;
     private String userName;
     private String ini;
-    private int cpr;
+    private long cpr;
     private String password;
     private List<String> role;
 
-    public User(int userId, String username, String ini, int cpr, String password, List<String> role ){
+    public User(int userId, String username, String ini, long cpr, String password, List<String> role ){
         this.userId = userId;
         this.userName = username;
         this.ini = ini;
@@ -19,7 +19,7 @@ public class User{
         this.role = role;
     }
 
-    public int getCpr() {
+    public long getCpr() {
         return cpr;
     }
 

@@ -11,12 +11,12 @@ public class UserDTO implements Serializable{
     private int	userId;
     private String userName;
     private String ini;
-    private int cpr;
+    private long cpr;
     private String password;
     private List<String> roles;
 
 // Constructor
-    public UserDTO(int userid, String userName, String ini, int cpr, String password, List<String> roles) {
+    public UserDTO(int userid, String userName, String ini, long cpr, String password, List<String> roles) {
         this.userId = userid;
         this.userName = userName;
         this.ini = ini;
@@ -35,7 +35,7 @@ public class UserDTO implements Serializable{
     public String getIni() {
         return ini;
     }
-    public int getCpr() {
+    public long getCpr() {
         return cpr;
     }
     public List<String> getRoles() {

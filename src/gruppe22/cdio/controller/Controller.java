@@ -82,7 +82,7 @@ public class Controller implements IController {
             ui.printLine("\nIndtast initialer:");
             String ini = ui.getInput();
             ui.printLine("\nIndtast CPR-nummer:");
-            int cprNumber = Integer.parseInt(ui.getInput());
+            long cprNumber = Long.parseLong(ui.getInput());
             ui.printLine("\nIndtast rolle (Admin, Pharmacist, Foreman, Operator:");
             String role = ui.getInput();
             logic.createUser(userId, userName, ini, cprNumber, role);
@@ -105,7 +105,7 @@ public class Controller implements IController {
             ui.printLine("\nIndtast (nye) initialer:");
             String ini = ui.getInput();
             ui.printLine("\nIndtast CPR-nummer:");
-            int cprNumber = Integer.parseInt(ui.getInput());
+            long cprNumber = Long.parseLong(ui.getInput());
             logic.updateUser(userId, userName, cprNumber, ini, logic.getUser(userId).getPassword(),
                     logic.getUser(userId).getRoles());
             ui.clearScreen();

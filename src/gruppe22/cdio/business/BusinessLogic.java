@@ -74,7 +74,7 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void createUser(int userId, String userName, String ini, int cpr, String role) {
+    public void createUser(int userId, String userName, String ini, long cpr, String role) {
 
         List<String> roles = new ArrayList<>();
         roles.add(role);
@@ -90,7 +90,7 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void updateUser(int userId, String userName, int cprNumber, String ini, String pw, List<String> roles) throws IUserDAO.DALException {
+    public void updateUser(int userId, String userName, long cprNumber, String ini, String pw, List<String> roles) throws IUserDAO.DALException {
         UserDTO user = new UserDTO(userId, userName, ini, cprNumber, pw, roles);
         userDao.updateUser(user);
     }

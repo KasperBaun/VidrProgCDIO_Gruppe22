@@ -24,13 +24,13 @@ public class UserDAO implements IUserDAO{
     }
     public List<UserDTO> getUserList() throws IUserDAO.DALException{
         List<UserDTO> users = new ArrayList<UserDTO>();
-        User u = data.getUser(0);
+        User u;
 
-        for (int i = 0; i < data.getUserListSize() - 1; i++) {
+        for (int i = 0; i < data.getUserListSize(); i++) {
+            u = data.getUser(i);
             UserDTO user = new UserDTO (u.getUserId(), u.getUserName(), u.getIni(), u.getCpr(),
                     u.getPassword(), u.getRole());
             users.add(user);
-            u = data.getUser(i);
         }
         return users;
 
