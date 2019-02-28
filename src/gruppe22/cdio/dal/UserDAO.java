@@ -1,9 +1,13 @@
 package gruppe22.cdio.dal;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO implements IUserDAO{
+    public UserDAO() throws IOException, ClassNotFoundException {
+    }
+
     class DALException extends Exception {
         public DALException(String msg, Throwable e) {
             super(msg,e);
@@ -24,21 +28,16 @@ public class UserDAO implements IUserDAO{
     }
     public List<UserDTO> getUserList() throws IUserDAO.DALException{
         List<UserDTO> users = new ArrayList<UserDTO>();
-        User u = data.getUser(0);
+        User u;
 
-        int i = 0;
-        try {
-            while (u != null) {
-                UserDTO user = new UserDTO(u.getUserId(), u.getUserName(), u.getIni(), u.getCpr(), u.getPassword(), u.getRole() );
-                users.add(user);
-                i++;
-                u = data.getUser(i);
-            }
-        }
-        catch(IndexOutOfBoundsException e){
-            return users;
+        for (int i = 0; i < data.getUserListSize(); i++) {
+            u = data.getUser(i);
+            UserDTO user = new UserDTO (u.getUserId(), u.getUserName(), u.getIni(), u.getCpr(),
+                    u.getPassword(), u.getRole());
+            users.add(user);
         }
         return users;
+
     }
 
     public void createUser(UserDTO user) throws IUserDAO.DALException{
@@ -49,5 +48,9 @@ public class UserDAO implements IUserDAO{
     }
     public void deleteUser(UserDTO user) throws IUserDAO.DALException{
         data.deleteUser(user);
+    }
+
+    public void saveData(String fileName) throws IOException {
+        data.saveToDisk(fileName);
     }
 }

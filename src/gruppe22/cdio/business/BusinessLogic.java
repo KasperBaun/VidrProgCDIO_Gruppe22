@@ -4,6 +4,7 @@ import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.dal.UserDAO;
 import gruppe22.cdio.dal.UserDTO;
 
+import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +18,7 @@ public class BusinessLogic implements IBusinessLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-    public  BusinessLogic() {
+    public  BusinessLogic() throws IOException, ClassNotFoundException {
         userDao = new UserDAO();
     }
 
@@ -59,11 +60,7 @@ public class BusinessLogic implements IBusinessLogic {
             List<UserDTO> userList = userDao.getUserList();
 
             for (int i = 0; i < userList.size(); i++) {
-                list.add("ID: " + userList.get(i).getUserId()
-                        + ", Navn: " + userList.get(i).getUserName()
-                        + ", Initialer: " + userList.get(i).getIni()
-                        + ", Rolle: " + userList.get(i).getRoles()
-                );
+                list.add(userList.get(i).toString());
             }
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
@@ -78,7 +75,7 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void createUser(int userId, String userName, String ini, int cpr, String role) {
+    public void createUser(int userId, String userName, String ini, long cpr, String role) {
 
         List<String> roles = new ArrayList<>();
         roles.add(role);
@@ -94,8 +91,8 @@ public class BusinessLogic implements IBusinessLogic {
     }
 
     @Override
-    public void updateUser(int userId, String userName, int cprNumber, String ini) throws IUserDAO.DALException {
-        UserDTO user = new UserDTO(userId, userName, ini, cprNumber, "PLACEHOLDER", new ArrayList<>());
+    public void updateUser(int userId, String userName, long cprNumber, String ini, String pw, List<String> roles) throws IUserDAO.DALException {
+        UserDTO user = new UserDTO(userId, userName, ini, cprNumber, pw, roles);
         userDao.updateUser(user);
     }
 
@@ -187,5 +184,9 @@ public class BusinessLogic implements IBusinessLogic {
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
         return password;
+    }
+
+    public void saveData(String fileName) throws IOException {
+        userDao.saveData(fileName);
     }
 }
