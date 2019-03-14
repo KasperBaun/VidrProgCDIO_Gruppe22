@@ -1,6 +1,6 @@
 package gruppe22.cdio.controller;
 
-import gruppe22.cdio.business.IBusinessLogic;
+import gruppe22.cdio.business.IUserLogic;
 import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.ui.IUserInterface;
 
@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class Controller implements IController {
     private IUserInterface ui;
-    private IBusinessLogic logic;
+    private IUserLogic logic;
 
 
     @Override
@@ -17,7 +17,7 @@ public class Controller implements IController {
     }
 
     @Override
-    public void setLogic(IBusinessLogic logic) {
+    public void setLogic(IUserLogic logic) {
         this.logic = logic;
     }
 

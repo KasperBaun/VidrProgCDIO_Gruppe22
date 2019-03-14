@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class BusinessLogic implements IBusinessLogic {
+public class UserLogic implements IUserLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-    public  BusinessLogic() throws IOException, ClassNotFoundException {
+    public UserLogic() throws IOException, ClassNotFoundException {
         userDao = new UserDAO();
     }
 

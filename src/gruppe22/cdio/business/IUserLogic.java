@@ -6,7 +6,7 @@ import gruppe22.cdio.dal.UserDTO;
 import java.io.IOException;
 import java.util.List;
 
-public interface IBusinessLogic {
+public interface IUserLogic {
 
     //Todo: methods for logic and interaction with domain (DTO) goes here..
 
