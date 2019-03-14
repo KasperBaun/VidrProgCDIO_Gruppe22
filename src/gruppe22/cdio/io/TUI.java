@@ -1,7 +1,5 @@
-package gruppe22.cdio.ui;
+package gruppe22.cdio.io;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 

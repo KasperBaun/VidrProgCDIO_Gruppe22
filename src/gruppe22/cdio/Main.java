@@ -2,7 +2,7 @@ package gruppe22.cdio;
 
 import gruppe22.cdio.business.*;
 import gruppe22.cdio.controller.*;
-import gruppe22.cdio.ui.*;
+import gruppe22.cdio.io.*;
 import gruppe22.cdio.dal.IUserDAO.DALException;
 
 import java.io.IOException;
