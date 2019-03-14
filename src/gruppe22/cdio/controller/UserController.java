@@ -2,11 +2,11 @@ package gruppe22.cdio.controller;
 
 import gruppe22.cdio.business.IUserLogic;
 import gruppe22.cdio.dal.IUserDAO;
-import gruppe22.cdio.ui.IUserInterface;
+import gruppe22.cdio.ui.*;
 
 import java.io.IOException;
 
-public class Controller implements IController {
+public class UserController implements IUserController {
     private IUserInterface ui;
     private IUserLogic logic;
 
@@ -28,11 +28,6 @@ public class Controller implements IController {
         logic.setUserDTO(Integer.parseInt(ui.getInput()));
         ui.clearScreen();
         showMenu();
-    }
-
-    @Override
-    public void showLogin() {
-
     }
 
     @Override
