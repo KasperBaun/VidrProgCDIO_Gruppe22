@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) throws DALException, IOException, ClassNotFoundException {
         IUserLogic logic = new UserLogic();
         IUserInterface tui = new TUI();
-        IUserController controller = new UserController();
+        IController controller = new UserController();
         controller.setLogic(logic);
         controller.setInterface(tui);
         controller.start();

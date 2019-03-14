@@ -6,7 +6,7 @@ import gruppe22.cdio.ui.*;
 
 import java.io.IOException;
 
-public class UserController implements IUserController {
+public class UserController implements IController {
     private IUserInterface ui;
     private IUserLogic logic;
 
