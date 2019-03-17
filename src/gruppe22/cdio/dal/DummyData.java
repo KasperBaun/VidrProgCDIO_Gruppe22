@@ -17,7 +17,7 @@ public class DummyData {
             }
             List<String> adminListe = new ArrayList<String>();
             adminListe.add("Admin");
-            users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));
+            users.add(new User(12, "Anders And", "ADM", 0101010101, "hest", adminListe));
         }
         else {
             readFromDisk("Data.txt");
