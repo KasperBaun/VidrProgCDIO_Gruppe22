@@ -3,6 +3,7 @@ package gruppe22.cdio.controller;
 import gruppe22.cdio.business.IUserLogic;
 import gruppe22.cdio.dal.IUserDAO;
 import gruppe22.cdio.io.IUserInterface;
+import gruppe22.cdio.io.WeightInterface;
 
 import java.io.IOException;
 
