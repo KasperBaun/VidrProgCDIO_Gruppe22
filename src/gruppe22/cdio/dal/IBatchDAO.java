@@ -4,11 +4,18 @@ import java.io.IOException;
 import java.util.List;
 
 public interface IBatchDAO {
-    BatchDTO getUser(int userId) throws IUserDAO.DALException;
-    List<UserDTO> getUserList() throws IUserDAO.DALException;
+    BatchDTO getBatch(int batchId) throws IBatchDAO.DALException;
 
-    void createUser(UserDTO user) throws IUserDAO.DALException;
-    void updateUser(UserDTO user) throws IUserDAO.DALException;
-    void deleteUser(UserDTO user) throws IUserDAO.DALException;
-    void saveData(String fileName) throws IOException;
+    void createBatch(BatchDTO batch) throws IBatchDAO.DALException;
+    void updateBatch(BatchDTO batch) throws IBatchDAO.DALException;
+    void deleteBatch(BatchDTO batch) throws IBatchDAO.DALException;
+
+    class DALException extends Exception {
+        public DALException(String msg, Throwable e) {
+            super(msg,e);
+        }
+        public DALException(String msg) {
+            super(msg);
+        }
+    }
 }

@@ -11,4 +11,13 @@ public class BatchDTO {
     private double grossWeight;
     private LocalTime dateTime;
     private boolean discarded;
+
+    class DALException extends Exception {
+        public DALException(String msg, Throwable e) {
+            super(msg,e);
+        }
+        public DALException(String msg) {
+            super(msg);
+        }
+    }
 }

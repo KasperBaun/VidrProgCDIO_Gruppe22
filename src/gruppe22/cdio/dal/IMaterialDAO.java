@@ -1,8 +1,9 @@
 package gruppe22.cdio.dal;
 
-public class MaterialDTO {
-    private int id;
-    private String material;
+import java.sql.SQLException;
+
+public interface IMaterialDAO {
+    MaterialDTO getMaterial(int materialId) throws MaterialDTO.DALException;
 
     class DALException extends Exception {
         public DALException(String msg, Throwable e) {
