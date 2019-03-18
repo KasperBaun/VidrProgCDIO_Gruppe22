@@ -1,11 +1,15 @@
 package gruppe22.cdio.dal;
 
+import gruppe22.cdio.dal.dto.MaterialDTO;
+import gruppe22.cdio.dal.dto.UserDTO;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DummyData {
     private List<User> users = new ArrayList<>();
+    private List<MaterialDTO> materials = new ArrayList<>();
 
 
     public DummyData() throws IOException, ClassNotFoundException {
@@ -18,6 +22,12 @@ public class DummyData {
             List<String> adminListe = new ArrayList<String>();
             adminListe.add("Admin");
             users.add(new User(12, "Anders And", "ADM", 0101010101, "hest", adminListe));
+
+            // Materials
+            MaterialDTO material = new MaterialDTO();
+            material.setId(1234);
+            material.setMaterial("Salt");
+            materials.add(material);
         }
         else {
             readFromDisk("Data.txt");

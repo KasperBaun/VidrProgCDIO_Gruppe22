@@ -1,4 +1,4 @@
-package gruppe22.cdio.dal;
+package gruppe22.cdio.dal.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;

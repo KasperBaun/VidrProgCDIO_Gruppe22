@@ -1,4 +1,6 @@
-package gruppe22.cdio.dal;
+package gruppe22.cdio.dal.dao;
+
+import gruppe22.cdio.dal.dto.BatchDTO;
 
 public class BatchDAO implements IBatchDAO {
 

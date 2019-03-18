@@ -11,9 +11,11 @@ public class MettlerWeight implements IWeight {
     private BufferedReader bufferedReader;
     private OutputStream outputStream;
 
-    @Override
-    public void openConnection(String host, int port) {
+
+    public  MettlerWeight() {
         try {
+            String host = "127.0.0.1";
+            int port = 8000;
             socket = new Socket(host, port);
 
             outputStream = socket.getOutputStream();
@@ -36,17 +38,40 @@ public class MettlerWeight implements IWeight {
     }
 
     @Override
-    public void sendMessage(String msg) {
-
+    public void sendMessageBig(String msg) {
+        output.println("D \""+msg +"\" crlf");
     }
 
     @Override
-    public String getInput() {
-        return null;
+    public void sendMessageSmall(String msg) {
+        output.println("P111 \""+msg +"\" crlf");
     }
 
     @Override
-    public String sendAndAwaitReturn() {
-        return null;
+    public String tareWeight() {
+        output.println("T crlf");
+        String returnvalue = null;
+        try {
+            returnvalue = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnvalue;
+    }
+
+
+
+    @Override
+    public String sendAndAwaitReturn(String msg) {
+        output.println("RM20 8 \"" +msg+ "\" \"\" \"&3\" crlf");
+        String returnvalue = null;
+        try {
+            bufferedReader.readLine();
+            returnvalue = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnvalue;
     }
 }
+

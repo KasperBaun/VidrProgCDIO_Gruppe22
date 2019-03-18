@@ -1,4 +1,8 @@
-package gruppe22.cdio.dal;
+package gruppe22.cdio.dal.dao;
+
+import gruppe22.cdio.dal.DummyData;
+import gruppe22.cdio.dal.User;
+import gruppe22.cdio.dal.dto.UserDTO;
 
 import java.io.IOException;
 import java.util.ArrayList;

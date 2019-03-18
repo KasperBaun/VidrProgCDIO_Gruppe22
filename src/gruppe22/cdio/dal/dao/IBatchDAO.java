@@ -1,7 +1,6 @@
-package gruppe22.cdio.dal;
+package gruppe22.cdio.dal.dao;
 
-import java.io.IOException;
-import java.util.List;
+import gruppe22.cdio.dal.dto.BatchDTO;
 
 public interface IBatchDAO {
     BatchDTO getBatch(int batchId) throws IBatchDAO.DALException;

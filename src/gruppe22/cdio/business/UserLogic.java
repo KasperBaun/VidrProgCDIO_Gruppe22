@@ -1,8 +1,8 @@
 package gruppe22.cdio.business;
 
-import gruppe22.cdio.dal.IUserDAO;
-import gruppe22.cdio.dal.UserDAO;
-import gruppe22.cdio.dal.UserDTO;
+import gruppe22.cdio.dal.dao.IUserDAO;
+import gruppe22.cdio.dal.dao.UserDAO;
+import gruppe22.cdio.dal.dto.UserDTO;
 
 import java.io.IOException;
 import java.security.SecureRandom;

@@ -1,4 +1,4 @@
 package gruppe22.cdio.business;
 
-public class WeightLogic {
+public class WeightLogic implements IWeightLogic {
 }
