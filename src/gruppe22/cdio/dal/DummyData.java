@@ -61,6 +61,10 @@ public class DummyData {
         return users.size();
     }
 
+    public MaterialDTO getMaterial(int id) {
+        return materials.get(0);
+    }
+
     public void saveToDisk(String fileName) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
         out.writeObject(this.users);
