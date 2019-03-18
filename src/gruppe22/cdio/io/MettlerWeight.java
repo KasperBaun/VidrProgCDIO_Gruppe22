@@ -3,7 +3,7 @@ package gruppe22.cdio.io;
 import java.io.*;
 import java.net.Socket;
 
-public class WeightInterface implements IWeightInterface {
+public class MettlerWeight implements IWeight {
     private Socket socket;
     private PrintWriter output;
     private InputStream inputStream;
@@ -36,7 +36,7 @@ public class WeightInterface implements IWeightInterface {
     }
 
     @Override
-    public void sendMessage() {
+    public void sendMessage(String msg) {
 
     }
 
