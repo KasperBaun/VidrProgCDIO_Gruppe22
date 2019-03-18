@@ -73,5 +73,18 @@ public class MettlerWeight implements IWeight {
         }
         return returnvalue;
     }
-}
+
+    @Override
+    public String readWeight() {
+        output.println("S crlf");
+        String returnvalue = null;
+        try {
+            returnvalue = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return returnvalue;
+    }
+    }
+
 

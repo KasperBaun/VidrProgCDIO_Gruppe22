@@ -6,7 +6,7 @@ import gruppe22.cdio.io.IUserInterface;
 
 import java.io.IOException;
 
-public interface IController {
+public interface IUserController {
 
     void setInterface(IUserInterface ui);
     void setLogic(IUserLogic logic);

@@ -3,7 +3,7 @@ package gruppe22.cdio.io;
 import java.util.List;
 import java.util.Scanner;
 
-//Skal tale med IController - metoderne skal kalde fra controlleren til sidst
+//Skal tale med IUserController - metoderne skal kalde fra controlleren til sidst
 public class TUI implements IUserInterface{
 
     Scanner scanner = new Scanner(System.in);

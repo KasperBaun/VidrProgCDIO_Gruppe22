@@ -8,5 +8,6 @@ public interface IWeight {
     void sendMessageSmall(String msg);
     String tareWeight();
     String sendAndAwaitReturn(String msg);
+    String readWeight();
 
 }
