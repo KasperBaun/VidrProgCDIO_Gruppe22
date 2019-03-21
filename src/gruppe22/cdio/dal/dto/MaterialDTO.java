@@ -12,6 +12,8 @@ public class MaterialDTO {
         this.material = mat;
     }
 
+    public String getMaterial() {return this.material; };
+
     public class DALException extends Exception {
         public DALException(String msg, Throwable e) {
             super(msg,e);
