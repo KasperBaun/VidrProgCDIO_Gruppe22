@@ -63,7 +63,8 @@ public class WeightController implements IWeightController{
         input = weight.sendAndAwaitReturn(user.getUserName() + " Er dette korrekt (1:Y, 2:N)");
         if (SubStringGenerator(input).equals("1")) {
             input = weight.sendAndAwaitReturn("Indtast materiale nummer: ");
-            material = getMaterial(Integer.parseInt(SubStringGenerator(input)));
+            int batchid =  Integer.parseInt(SubStringGenerator(input));
+            material = getMaterial(batchid);
             weight.sendAndAwaitReturn("Vægten skal være ubelastet.");
             weight.tareWeight();
             weight.sendAndAwaitReturn("Placer venligst tara på vægten.");
@@ -76,7 +77,7 @@ public class WeightController implements IWeightController{
             bruttoweight = getBruttoWeight(netweight, weight.readWeight());
             input = weight.sendAndAwaitReturn("OK (1) eller Kasseret (2) ?");
             if (SubStringGenerator(input).equals("1")) {
-                saveBatch(taraweight, netweight, bruttoweight, material, user);
+                saveBatch(taraweight, netweight, bruttoweight, batchid, user);
             }
             else {
                 start();
@@ -115,7 +116,7 @@ public class WeightController implements IWeightController{
         return returnString;
     }
 
-    public void saveBatch(double tareweight, double netweight, double bruttoweight, String material, UserDTO user) {
+    public void saveBatch(double tareweight, double netweight, double bruttoweight, int batchid, UserDTO user) {
         weightLogic.saveBatch(tareweight, netweight, bruttoweight, material, user);
     }
 }

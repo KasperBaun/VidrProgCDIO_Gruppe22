@@ -12,8 +12,8 @@ public interface IWeightController {
     public void getBatchNumber();
     public void start();
     public String getMaterial(int batchnumber);
-    public void getNetWeight();
-    public void getBruttoWeight();
+    public double getNetWeight(String netweightresult);
+    public double getBruttoWeight(double net, String bruttoweightresult);
     
 
 
