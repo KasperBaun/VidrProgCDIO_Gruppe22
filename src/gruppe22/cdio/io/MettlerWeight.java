@@ -64,6 +64,7 @@ public class MettlerWeight implements IWeight {
     @Override
     public String sendAndAwaitReturn(String msg) {
         output.println("RM20 8 \"" +msg+ "\" \"\" \"&3\" crlf");
+
         String returnvalue = null;
         try {
             bufferedReader.readLine();
