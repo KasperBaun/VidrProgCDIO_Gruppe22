@@ -101,8 +101,8 @@ public class WeightController implements IWeightController{
 
     @Override
     public double getBruttoWeight(double net, String bruttoweightresult) {
-        double bruttoweight = net - Double.parseDouble(SubStringGenerator(bruttoweightresult, "S", " ", 9));
-        return bruttoweight * -1.0;
+        double bruttoweight = net + Double.parseDouble(SubStringGenerator(bruttoweightresult, "S", " ", 9));
+        return bruttoweight;
 
 
     }
