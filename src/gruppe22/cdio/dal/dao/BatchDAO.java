@@ -1,8 +1,16 @@
 package gruppe22.cdio.dal.dao;
 
+import gruppe22.cdio.dal.DummyData;
 import gruppe22.cdio.dal.dto.BatchDTO;
 
+import java.io.IOException;
+
 public class BatchDAO implements IBatchDAO {
+
+    DummyData data = new DummyData();
+
+    public BatchDAO() throws IOException, ClassNotFoundException {
+    }
 
     @Override
     public BatchDTO getBatch(int batchId) throws IBatchDAO.DALException {
@@ -11,7 +19,7 @@ public class BatchDAO implements IBatchDAO {
 
     @Override
     public void createBatch(BatchDTO batch) throws IBatchDAO.DALException {
-
+        data.createBatch(batch);
     }
 
     @Override

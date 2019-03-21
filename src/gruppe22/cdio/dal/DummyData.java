@@ -1,5 +1,6 @@
 package gruppe22.cdio.dal;
 
+import gruppe22.cdio.dal.dto.BatchDTO;
 import gruppe22.cdio.dal.dto.MaterialDTO;
 import gruppe22.cdio.dal.dto.UserDTO;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class DummyData {
     private List<User> users = new ArrayList<>();
     private List<MaterialDTO> materials = new ArrayList<>();
+    private List<BatchDTO> batches = new ArrayList<>();
 
 
     public DummyData() throws IOException, ClassNotFoundException {
@@ -37,6 +39,9 @@ public class DummyData {
         return users.get(id);
     }
 
+    public void createBatch(BatchDTO batch) {
+        batches.add(batch);
+    }
     public void createUser(UserDTO user){
         while(users.size() > user.getUserId()){
             user.setUserId(user.getUserId() + 1);
@@ -68,6 +73,8 @@ public class DummyData {
     public void saveToDisk(String fileName) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
         out.writeObject(this.users);
+        out.writeObject(this.materials);
+        out.writeObject(this.batches);
         out.flush();
         out.close();
     }
@@ -75,5 +82,7 @@ public class DummyData {
     public void readFromDisk(String fileName) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
         this.users = (List<User>)in.readObject();
+        this.batches = (List<BatchDTO>)in.readObject();
+        this.materials = (List<MaterialDTO>)in.readObject();
     }
 }
