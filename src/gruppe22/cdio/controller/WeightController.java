@@ -50,13 +50,15 @@ public class WeightController implements IWeightController{
 
         System.out.println(operatorNumber);
 
+        UserDTO user = null;
+
         try {
-            UserDTO user = userLogic.getUser(Integer.parseInt(operatorNumber));
+            user = userLogic.getUser(Integer.parseInt(operatorNumber));
         } catch (IUserDAO.DALException e) {
             e.printStackTrace();
         }
 
-        System.out.println(userLogic.toString());
+        System.out.println(user.toString());
     }
 
     @Override
@@ -70,10 +72,10 @@ public class WeightController implements IWeightController{
     }
 
     private String test(String test, String s, String e, String delimeter) {
-        int opening = test.indexOf(s);
+        int opening = test.indexOf(s) + 1;
         int closing = test.indexOf(e, opening + 1);
 
-        StringTokenizer tokenizer = new StringTokenizer(test, "");
-        return test;
+        String returnString = test.substring(opening, closing);
+        return returnString;
     }
 }
