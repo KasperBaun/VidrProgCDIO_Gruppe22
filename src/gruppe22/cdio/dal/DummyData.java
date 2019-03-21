@@ -16,7 +16,7 @@ public class DummyData {
 
     public DummyData() throws IOException, ClassNotFoundException {
         if (!(new File("Data.txt").exists())) {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 12; i++) {
                 List<String> tomListe = new ArrayList<String>();
                 tomListe.add("Pharmacist");
                 users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
@@ -67,7 +67,11 @@ public class DummyData {
     }
 
     public MaterialDTO getMaterial(int id) {
-        return materials.get(0);
+        for (MaterialDTO m : materials) {
+            if (m.getId() == id)
+                return m;
+        }
+        return null;
     }
 
     public void saveToDisk(String fileName) throws IOException {

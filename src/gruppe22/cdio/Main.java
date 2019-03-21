@@ -2,6 +2,7 @@ package gruppe22.cdio;
 
 import gruppe22.cdio.business.*;
 import gruppe22.cdio.controller.*;
+import gruppe22.cdio.dal.dao.IBatchDAO;
 import gruppe22.cdio.io.*;
 import gruppe22.cdio.dal.dao.IUserDAO.DALException;
 
@@ -10,7 +11,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) throws DALException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws DALException, IOException, ClassNotFoundException, IBatchDAO.DALException {
 /*
         Scanner scanner = new Scanner(System.in);
         System.out.println("Tast 1 for brugeradministration");

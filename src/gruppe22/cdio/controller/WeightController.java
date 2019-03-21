@@ -51,7 +51,6 @@ public class WeightController implements IWeightController{
         double bruttoweight;
         String input = weight.sendAndAwaitReturn("Indtast op. nummer");
         String operatorNumber = SubStringGenerator(input);
-        System.out.println(operatorNumber);
         UserDTO user = null;
 
         try {
@@ -60,20 +59,20 @@ public class WeightController implements IWeightController{
             e.printStackTrace();
         }
 
-        input = weight.sendAndAwaitReturn(user.getUserName() + " Er dette korrekt (1:Y, 2:N)");
+        input = weight.sendAndAwaitReturn(user.getUserName() + " - Er dette korrekt (1:Y, 2:N)");
         if (SubStringGenerator(input).equals("1")) {
-            input = weight.sendAndAwaitReturn("Indtast materiale nummer: ");
+            input = weight.sendAndAwaitReturn("Indtast materialenummer: ");
             int batchid =  Integer.parseInt(SubStringGenerator(input));
             material = getMaterial(batchid);
-            weight.sendAndAwaitReturn("Vægten skal være ubelastet.");
+            weight.sendAndAwaitReturn("Vaegten skal vaere ubelastet.");
             weight.tareWeight();
-            weight.sendAndAwaitReturn("Placer venligst tara på vægten.");
+            weight.sendAndAwaitReturn("Placer venligst tara på vaegten.");
             double taraweight = Double.parseDouble(SubStringGenerator(weight.readWeight()));
             weight.tareWeight();
-            weight.sendAndAwaitReturn("Placer netto på vægten");
+            weight.sendAndAwaitReturn("Placer netto på vaegten");
             netweight = getNetWeight(weight.readWeight());
             weight.tareWeight();
-            weight.sendAndAwaitReturn("Fjern venligst brutto fra vægten");
+            weight.sendAndAwaitReturn("Fjern venligst brutto fra vaegten");
             bruttoweight = getBruttoWeight(netweight, weight.readWeight());
             input = weight.sendAndAwaitReturn("OK (1) eller Kasseret (2) ?");
             if (SubStringGenerator(input).equals("1")) {
