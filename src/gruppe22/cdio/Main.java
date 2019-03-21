@@ -35,6 +35,12 @@ public class Main {
     }
     */
     IWeight vægt = new MettlerWeight();
+    IWeightController weightController = new WeightController();
+    IWeightLogic logic = new WeightLogic();
+    weightController.setInterface(vægt);
+    weightController.setLogic(logic);
+
+    weightController.start();
 
         System.out.println( vægt.readWeight());
         vægt.closeConnection();
