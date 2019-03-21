@@ -11,6 +11,7 @@ public interface IWeightController {
     public void getOperatorID();
     public void getBatchNumber();
     public void start();
+    public String getMaterial(int batchnumber);
     public void getNetWeight();
     public void getBruttoWeight();
     

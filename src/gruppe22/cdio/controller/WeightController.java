@@ -46,6 +46,7 @@ public class WeightController implements IWeightController{
 
     @Override
     public void start() {
+        String material;
         String input = weight.sendAndAwaitReturn("Indtast op. nummer");
         String operatorNumber = SubStringGenerator(input,"\"", "\"");
         System.out.println(operatorNumber);
@@ -59,7 +60,9 @@ public class WeightController implements IWeightController{
 
         input = weight.sendAndAwaitReturn(user.getUserName() + " Er dette korrekt (1:Y, 2:N)");
         if (input == "1") {
-            input = weight.sendAndAwaitReturn("Indtast batch nummer (1000 - 9999)");
+            input = weight.sendAndAwaitReturn("Indtast materiale nummer: ");
+            material = getMaterial(Integer.parseInt(SubStringGenerator(input, "\"", "\"")));
+            System.out.println(material);
         }
         else {
             start();
@@ -67,6 +70,7 @@ public class WeightController implements IWeightController{
 
     }
 
+    @Override
     public String getMaterial(int batchnumber) {
         return weightLogic.getMaterial(batchnumber).getMaterial();
     }
