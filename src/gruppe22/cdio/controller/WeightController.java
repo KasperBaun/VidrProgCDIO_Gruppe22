@@ -1,8 +1,8 @@
 package gruppe22.cdio.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import gruppe22.cdio.business.IUserLogic;
 import gruppe22.cdio.business.IWeightLogic;
+import gruppe22.cdio.dal.dao.IBatchDAO;
 import gruppe22.cdio.dal.dao.IUserDAO;
 import gruppe22.cdio.dal.dao.UserDAO;
 import gruppe22.cdio.dal.dto.MaterialDTO;
@@ -45,7 +45,7 @@ public class WeightController implements IWeightController{
     }
 
     @Override
-    public void start() {
+    public void start() throws IBatchDAO.DALException {
         String material;
         double netweight;
         double bruttoweight;
@@ -116,7 +116,7 @@ public class WeightController implements IWeightController{
         return returnString;
     }
 
-    public void saveBatch(double tareweight, double netweight, double bruttoweight, int batchid, UserDTO user) {
-        weightLogic.saveBatch(tareweight, netweight, bruttoweight, material, user);
+    public void saveBatch(double tareweight, double netweight, double bruttoweight, int batchid, UserDTO user) throws IBatchDAO.DALException {
+        weightLogic.saveBatch(tareweight, netweight, bruttoweight, batchid, user);
     }
 }
