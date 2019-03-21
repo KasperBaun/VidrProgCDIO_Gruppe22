@@ -18,5 +18,6 @@ public class WeightLogic implements IWeightLogic {
         } catch (MaterialDTO.DALException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

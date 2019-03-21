@@ -47,8 +47,10 @@ public class WeightController implements IWeightController{
     @Override
     public void start() {
         String material;
+        double netweight;
+        double bruttoweight;
         String input = weight.sendAndAwaitReturn("Indtast op. nummer");
-        String operatorNumber = SubStringGenerator(input,"\"", "\"");
+        String operatorNumber = SubStringGenerator(input);
         System.out.println(operatorNumber);
         UserDTO user = null;
 
@@ -59,10 +61,29 @@ public class WeightController implements IWeightController{
         }
 
         input = weight.sendAndAwaitReturn(user.getUserName() + " Er dette korrekt (1:Y, 2:N)");
-        if (input == "1") {
+        if (SubStringGenerator(input).equals("1")) {
             input = weight.sendAndAwaitReturn("Indtast materiale nummer: ");
-            material = getMaterial(Integer.parseInt(SubStringGenerator(input, "\"", "\"")));
-            System.out.println(material);
+            material = getMaterial(Integer.parseInt(SubStringGenerator(input)));
+            weight.sendAndAwaitReturn("Vægten skal være ubelastet.");
+            weight.tareWeight();
+            weight.sendAndAwaitReturn("Placer venligst tara på vægten.");
+            double taraweight = Double.parseDouble(SubStringGenerator(weight.readWeight()));
+            weight.tareWeight();
+            weight.sendAndAwaitReturn("Placer netto på vægten");
+            netweight = getNetWeight(weight.readWeight());
+            weight.tareWeight();
+            weight.sendAndAwaitReturn("Fjern venligst brutto fra vægten");
+            bruttoweight = getBruttoWeight(netweight, weight.readWeight());
+            input = weight.sendAndAwaitReturn("OK (1) eller Kasseret (2) ?");
+            if (SubStringGenerator(input).equals("1")) {
+                saveBatch(taraweight, netweight, bruttoweight);
+            }
+            else {
+                start();
+            }
+
+
+
         }
         else {
             start();
@@ -76,19 +97,28 @@ public class WeightController implements IWeightController{
     }
 
     @Override
-    public void getNetWeight() {
-
+    public double getNetWeight(String netweightresult) {
+        double netweight = Double.parseDouble(SubStringGenerator(netweightresult));
+        return netweight;
     }
 
     @Override
-    public void getBruttoWeight() {
+    public double getBruttoWeight(double net, String bruttoweightresult) {
+        double bruttoweight = net - Double.parseDouble(SubStringGenerator(bruttoweightresult));
+        return bruttoweight * -1.0;
+
 
     }
 
-    private String SubStringGenerator(String source, String s, String e) {
-        int opening = source.indexOf(s) + 1;
-        int closing = source.indexOf(e, opening + 1);
+    private String SubStringGenerator(String source) {
+        int opening = source.indexOf("\"") + 1;
+        int closing = source.indexOf("\"", opening + 1);
 
-        return source.substring(opening, closing);
+        String returnString = source.substring(opening, closing);
+        return returnString;
+    }
+
+    public void saveBatch(double tareweight, double netweight, double bruttoweight) {
+        weightLogic.saveBatch(tareweight, netweight, bruttoweight);
     }
 }
