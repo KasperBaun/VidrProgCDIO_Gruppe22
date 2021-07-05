@@ -1,11 +1,9 @@
-package gruppe22.cdio.ui;
+package gruppe22.cdio.io;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//Skal tale med IController - metoderne skal kalde fra controlleren til sidst
+//Skal tale med IUserController - metoderne skal kalde fra controlleren til sidst
 public class TUI implements IUserInterface{
 
     Scanner scanner = new Scanner(System.in);

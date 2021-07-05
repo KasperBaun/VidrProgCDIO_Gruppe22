@@ -1,8 +1,8 @@
 package gruppe22.cdio.business;
 
-import gruppe22.cdio.dal.IUserDAO;
-import gruppe22.cdio.dal.UserDAO;
-import gruppe22.cdio.dal.UserDTO;
+import gruppe22.cdio.dal.dao.IUserDAO;
+import gruppe22.cdio.dal.dao.UserDAO;
+import gruppe22.cdio.dal.dto.UserDTO;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class BusinessLogic implements IBusinessLogic {
+public class UserLogic implements IUserLogic {
     private IUserDAO userDao;
     private UserDTO userDto;
 
-    public  BusinessLogic() throws IOException, ClassNotFoundException {
+    public UserLogic() throws IOException, ClassNotFoundException {
         userDao = new UserDAO();
     }
 

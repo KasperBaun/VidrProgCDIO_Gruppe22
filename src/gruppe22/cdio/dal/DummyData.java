@@ -1,23 +1,35 @@
 package gruppe22.cdio.dal;
 
+import gruppe22.cdio.dal.dto.BatchDTO;
+import gruppe22.cdio.dal.dto.MaterialDTO;
+import gruppe22.cdio.dal.dto.UserDTO;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DummyData {
     private List<User> users = new ArrayList<>();
+    private List<MaterialDTO> materials = new ArrayList<>();
+    private List<BatchDTO> batches = new ArrayList<>();
 
 
     public DummyData() throws IOException, ClassNotFoundException {
         if (!(new File("Data.txt").exists())) {
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 12; i++) {
                 List<String> tomListe = new ArrayList<String>();
                 tomListe.add("Pharmacist");
                 users.add(new User(i, "StandardUserName_" + i, "TEMP", 0000000000, "3t4nd4rd", tomListe));
             }
             List<String> adminListe = new ArrayList<String>();
             adminListe.add("Admin");
-            users.add(new User(10, "Admin", "ADM", 0101010101, "hest", adminListe));
+            users.add(new User(12, "Anders And", "ADM", 0101010101, "hest", adminListe));
+
+            // Materials
+            MaterialDTO material = new MaterialDTO();
+            material.setId(1234);
+            material.setMaterial("Salt");
+            materials.add(material);
         }
         else {
             readFromDisk("Data.txt");
@@ -27,6 +39,9 @@ public class DummyData {
         return users.get(id);
     }
 
+    public void createBatch(BatchDTO batch) {
+        batches.add(batch);
+    }
     public void createUser(UserDTO user){
         while(users.size() > user.getUserId()){
             user.setUserId(user.getUserId() + 1);
@@ -51,9 +66,19 @@ public class DummyData {
         return users.size();
     }
 
+    public MaterialDTO getMaterial(int id) {
+        for (MaterialDTO m : materials) {
+            if (m.getId() == id)
+                return m;
+        }
+        return null;
+    }
+
     public void saveToDisk(String fileName) throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
         out.writeObject(this.users);
+        out.writeObject(this.materials);
+        out.writeObject(this.batches);
         out.flush();
         out.close();
     }
@@ -61,5 +86,7 @@ public class DummyData {
     public void readFromDisk(String fileName) throws IOException, ClassNotFoundException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(fileName));
         this.users = (List<User>)in.readObject();
+        this.batches = (List<BatchDTO>)in.readObject();
+        this.materials = (List<MaterialDTO>)in.readObject();
     }
 }
